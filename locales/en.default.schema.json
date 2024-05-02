@@ -444,6 +444,113 @@
         "info": "Standard-styled cards have no borders when an image shape is active."
       }
     },
+    "section-1": {
+      "name": "Test section 1",
+      "settings": {
+        "image": {
+          "label": "Choose image",
+          "info": "You can choose image position"
+        },
+        "section-position": {
+          "label": "Section position desktop",
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Center"
+          },
+          "options__3": {
+            "label": "Right"
+          }
+        },
+        "image-position": {
+          "label": "Image position",
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Top"
+          },
+          "options__3": {
+            "label": "Right"
+          },
+          "options__4": {
+            "label": "Bottom"
+          }
+        }
+      },
+      "blocks": {
+        "test-block-1": {
+          "name": "Heading",
+          "settings": {
+            "heading": {
+              "label": "Heading content"
+            },
+            "heading_size": {
+              "label": "Heading size",
+              "options__1": {
+                "label": "Small"
+              },
+              "options__2": {
+                "label": "Medium"
+              },
+              "options__3": {
+                "label": "Large"
+              },
+              "options__4": {
+                "label": "Extra Large"
+              }
+            },
+            "heading_color": {
+              "label": "Heading color"
+            }
+          }
+        },
+        "test-block-2": {
+          "name": "Body",
+          "settings": {
+            "body": {
+              "label": "Body content"
+            },
+            "body_text_style": {
+              "label": "Body text style",
+              "options__1": {
+                "label": "Body"
+              },
+              "options__2": {
+                "label": "Subtitle"
+              },
+              "options__3": {
+                "label": "Upper case"
+              }
+            },
+            "body_color": {
+              "label": "Body color"
+            }
+          }
+        },
+        "test-block-3": {
+          "name": "Button",
+          "settings": {
+            "button": {
+              "label": "Button text"
+            },
+            "button_link": {
+              "label": "Button link"
+            },
+            "button_text_color": {
+              "label": "Button text color"
+            },
+            "button_background_color": {
+              "label": "Button background color"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Test section 1"
+      }
+    },
     "announcement-bar": {
       "name": "Announcement bar",
       "settings": {

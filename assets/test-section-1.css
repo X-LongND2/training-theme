@@ -1,0 +1,122 @@
+.test-section-1 {
+    padding: 0 5rem;
+    padding-top: 5rem;
+    gap: 1rem
+}
+
+.test-section-1.left.img-left {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.test-section-1.left.img-right {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: left;
+}
+
+.test-section-1.left.img-top {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.test-section-1.left.img-bottom {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: left;
+}
+
+.test-section-1.center.img-left {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.test-section-1.center.img-right {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+.test-section-1.center.img-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.test-section-1.center.img-bottom {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.test-section-1.right.img-left {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.test-section-1.right.img-right {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.test-section-1.right.img-top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.test-section-1.right.img-bottom {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+}
+
+.test-section-1__banner {
+    width: max-content;
+}
+
+.test-section-1__content {
+    display: flex;
+    width: max-content;
+    flex-direction: column;
+    text-align: left;
+}
+
+.test-section-1__button-link {
+    padding: 1.5rem;
+    width: max-content;
+    cursor: pointer;
+}
+
+.test-section-1__button-link:hover {
+    opacity: 0.6;
+}
+
+.test-section-1__button-link a {
+    text-decoration-line: none;
+    color: unset
+}
+
+.subtitle {
+    font-size: 1.8rem;
+}
+
+.upper {
+    text-transform: uppercase;
+}
+
+.test-section-1__heading.h2 {
+    font-size: 3rem;
+}
+
+.test-section-1__heading.h0 {
+    font-size: 4.5rem;
+}
+
+.test-section-1__heading.hxl {
+    font-size: 5rem;
+}

@@ -1,0 +1,246 @@
+{{ 'test-section-1.css' | asset_url | stylesheet_tag }}
+
+<div class="test-section-1 {% if section.settings.section-position == 'left' %}left{% endif %}{% if section.settings.section-position == 'center' %}center{% endif %}{% if section.settings.section-position == 'right' %}right{% endif %}{% if section.settings.image-position == 'left'%} img-left{% endif %}{% if section.settings.image-position == 'right'%} img-right{% endif %}{% if section.settings.image-position == 'top' %} img-top{% endif %}{% if section.settings.image-position == 'bottom' %} img-bottom{% endif %}">
+  <div class="test-section-1__banner">
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 500 | image_tag }}
+    {% else %}
+      {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+  </div>
+  <div class="test-section-1__content">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'test-block-1' -%}
+          {%- liquid
+            assign heading = block.settings.heading
+            assign heading_size = block.settings.heading_size
+            assign heading_color = block.settings.heading_color
+          -%}
+          <h1
+            class="test-section-1__heading {% if heading_size == 'h2' %}h2{% endif %}{% if heading_size == 'h0' %}h0{% endif %}{% if heading_size == 'hxl' %}hxl{% endif %}"
+            style="color: {{ heading_color }}"
+          >
+            {{ heading }}
+          </h1>
+        {%- when 'test-block-2' -%}
+          {%- liquid
+            assign body_text_style = block.settings.body_text_style
+            assign body_color = block.settings.body_color
+          -%}
+          <p
+            class="test-section-1__body {% if body_text_style == 'subtitle' %}subtitle{% endif %}{% if body_text_style == 'uppercase' %}upper{% endif %}"
+            style="color: {{ body_color }}"
+          >
+            {{ block.settings.body }}
+          </p>
+        {%- when 'test-block-3' -%}
+          {%- liquid
+            assign button = block.settings.button
+            assign button_color = block.settings.button_text_color
+            assign button_background = block.settings.button_background_color
+            assign button_link = block.settings.button_link
+          -%}
+          <div
+            class="test-section-1__button-link"
+            style="background-color: {{ button_background }}"
+          >
+            <a href="{{ button_link }}" style="color: {{ button_color }}">{{ button }}</a>
+          </div>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.section-1.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.section-1.settings.image.label",
+      "info": "t:sections.section-1.settings.image.info"
+    },
+    {
+      "type": "select",
+      "id": "section-position",
+      "label": "t:sections.section-1.settings.section-position.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.section-1.settings.section-position.options__1.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.section-1.settings.section-position.options__2.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.section-1.settings.section-position.options__3.label"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "image-position",
+      "label": "t:sections.section-1.settings.image-position.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.section-1.settings.image-position.options__1.label"
+        },
+        {
+          "value": "top",
+          "label": "t:sections.section-1.settings.image-position.options__2.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.section-1.settings.image-position.options__3.label"
+        },
+        {
+          "value": "bottom",
+          "label": "t:sections.section-1.settings.image-position.options__4.label"
+        }
+      ],
+      "default": "left"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "test-block-1",
+      "name": "t:sections.section-1.blocks.test-block-1.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "This is heading",
+          "label": "t:sections.section-1.blocks.test-block-1.settings.heading.label"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "t:sections.section-1.blocks.test-block-1.settings.heading_size.options__1.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.section-1.blocks.test-block-1.settings.heading_size.options__2.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:sections.section-1.blocks.test-block-1.settings.heading_size.options__3.label"
+            },
+            {
+              "value": "hxl",
+              "label": "t:sections.section-1.blocks.test-block-1.settings.heading_size.options__4.label"
+            }
+          ],
+          "default": "h1",
+          "label": "t:sections.section-1.blocks.test-block-1.settings.heading_size.label"
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "t:sections.section-1.blocks.test-block-1.settings.heading_color.label",
+          "default": "#000000"
+        }
+      ]
+    },
+    {
+      "type": "test-block-2",
+      "name": "t:sections.section-1.blocks.test-block-2.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "body",
+          "default": "This is body",
+          "label": "t:sections.section-1.blocks.test-block-2.settings.body.label"
+        },
+        {
+          "type": "select",
+          "id": "body_text_style",
+          "options": [
+            {
+              "value": "body",
+              "label": "t:sections.section-1.blocks.test-block-2.settings.body_text_style.options__1.label"
+            },
+            {
+              "value": "subtitle",
+              "label": "t:sections.section-1.blocks.test-block-2.settings.body_text_style.options__2.label"
+            },
+            {
+              "value": "uppercase",
+              "label": "t:sections.section-1.blocks.test-block-2.settings.body_text_style.options__3.label"
+            }
+          ],
+          "default": "body",
+          "label": "t:sections.section-1.blocks.test-block-2.settings.body_text_style.label"
+        },
+        {
+          "type": "color",
+          "id": "body_color",
+          "label": "t:sections.section-1.blocks.test-block-2.settings.body_color.label",
+          "default": "#000000"
+        }
+      ]
+    },
+    {
+      "type": "test-block-3",
+      "name": "t:sections.section-1.blocks.test-block-3.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button",
+          "default": "Button",
+          "label": "t:sections.section-1.blocks.test-block-3.settings.button.label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "t:sections.section-1.blocks.test-block-3.settings.button_link.label"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "t:sections.section-1.blocks.test-block-3.settings.button_text_color.label",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "button_background_color",
+          "label": "t:sections.section-1.blocks.test-block-3.settings.button_background_color.label",
+          "default": "#000000"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.section-1.presets.name",
+      "blocks": [
+        {
+          "type": "test-block-1"
+        },
+        {
+          "type": "test-block-2"
+        },
+        {
+          "type": "test-block-3"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
