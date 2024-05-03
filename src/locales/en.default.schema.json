@@ -551,6 +551,12 @@
         "name": "Test section 1"
       }
     },
+    "featured-collection-rebuild": {
+      "name": "Featured collection rebuild",
+      "presets": {
+        "name": "Featured collection rebuild"
+      }
+    },
     "announcement-bar": {
       "name": "Announcement bar",
       "settings": {
