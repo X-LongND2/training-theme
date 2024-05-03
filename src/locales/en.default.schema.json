@@ -444,115 +444,126 @@
         "info": "Standard-styled cards have no borders when an image shape is active."
       }
     },
-    "section-1": {
-      "name": "Test section 1",
-      "settings": {
-        "image": {
-          "label": "Choose image",
-          "info": "You can choose image position"
-        },
-        "section-position": {
-          "label": "Section position desktop",
-          "options__1": {
-            "label": "Left"
-          },
-          "options__2": {
-            "label": "Center"
-          },
-          "options__3": {
-            "label": "Right"
-          }
-        },
-        "image-position": {
-          "label": "Image position",
-          "options__1": {
-            "label": "Left"
-          },
-          "options__2": {
-            "label": "Top"
-          },
-          "options__3": {
-            "label": "Right"
-          },
-          "options__4": {
-            "label": "Bottom"
-          }
-        }
-      },
-      "blocks": {
-        "test-block-1": {
-          "name": "Heading",
-          "settings": {
-            "heading": {
-              "label": "Heading content"
-            },
-            "heading_size": {
-              "label": "Heading size",
-              "options__1": {
-                "label": "Small"
-              },
-              "options__2": {
-                "label": "Medium"
-              },
-              "options__3": {
-                "label": "Large"
-              },
-              "options__4": {
-                "label": "Extra Large"
-              }
-            },
-            "heading_color": {
-              "label": "Heading color"
-            }
-          }
-        },
-        "test-block-2": {
-          "name": "Body",
-          "settings": {
-            "body": {
-              "label": "Body content"
-            },
-            "body_text_style": {
-              "label": "Body text style",
-              "options__1": {
-                "label": "Body"
-              },
-              "options__2": {
-                "label": "Subtitle"
-              },
-              "options__3": {
-                "label": "Upper case"
-              }
-            },
-            "body_color": {
-              "label": "Body color"
-            }
-          }
-        },
-        "test-block-3": {
-          "name": "Button",
-          "settings": {
-            "button": {
-              "label": "Button text"
-            },
-            "button_link": {
-              "label": "Button link"
-            },
-            "button_text_color": {
-              "label": "Button text color"
-            },
-            "button_background_color": {
-              "label": "Button background color"
-            }
-          }
-        }
-      },
-      "presets": {
-        "name": "Test section 1"
-      }
-    },
     "featured-collection-rebuild": {
       "name": "Featured collection rebuild",
+      "settings": {
+        "heading_title": {
+          "label": "Heading"
+        },
+        "heading_size": {
+          "options__1": {
+            "label": "Small"
+          },
+          "options__2": {
+            "label": "Medium"
+          },
+          "options__3": {
+            "label": "Large"
+          },
+          "label": "Heading size"
+        },
+        "description": {
+          "label": "Description"
+        },
+        "show_description": {
+          "label": "Show collection description from the admin"
+        },
+        "description_style": {
+          "options__1": {
+            "label": "Body"
+          },
+          "options__2": {
+            "label": "Subtitle"
+          },
+          "options__3": {
+            "label": "Uppercase"
+          },
+          "label": "Description style"
+        },
+        "collection": {
+          "label": "Collection"
+        },
+        "max-products": {
+          "label": "Maximum products to show"
+        },
+        "columns_desktop": {
+          "label": "Number of columns on desktop"
+        },
+        "full_width": {
+          "label": "Make products full width"
+        },
+        "view_all": {
+          "label": "Enable \"View all\" if collection has more products than shown"
+        },
+        "view_all_style": {
+          "options__1": {
+            "label": "Link"
+          },
+          "options__2": {
+            "label": "Outline button"
+          },
+          "options__3": {
+            "label": "Solid button"
+          },
+          "label": "\"View all\" style"
+        },
+        "show_carousel": {
+          "label": "Enable carousel on desktop"
+        },
+        "header_product_card": {
+          "content": "Product card"
+        },
+        "image_ratio": {
+          "options__1": {
+            "label": "Adapt to image"
+          },
+          "options__2": {
+            "label": "Portrait"
+          },
+          "options__3": {
+            "label": "Square"
+          },
+          "label": "Image ratio"
+        },
+        "show_second_image": {
+          "label": "Show second image on hover"
+        },
+        "show_vendor": {
+          "label": "Show vendor"
+        },
+        "show_product_rating": {
+          "label": "Show product rating",
+          "info": "To display a rating, add a product rating app. [Learn more](https://help.shopify.com/manual/online-store/themes/theme-structure/theme-features#featured-collection-show-product-rating)"
+        },
+        "quick_add": {
+          "options__1": {
+            "label": "None"
+          },
+          "options__2": {
+            "label": "Standard"
+          },
+          "options__3": {
+            "label": "Bulk"
+          },
+          "label": "Quick add",
+          "info": "Bulk is optimized for items purchased in higher quantities."
+        },
+        "header_mobile_layout": {
+          "content": "Mobile layout"
+        },
+        "columns_mobile": {
+          "label": "Number of columns on mobile",
+          "options__1": {
+            "label": "1 column"
+          },
+          "options__2": {
+            "label": "2 columns"
+          }
+        },
+        "enable_swipe": {
+          "label": "Enable swipe on mobile"
+        }
+      },
       "presets": {
         "name": "Featured collection rebuild"
       }

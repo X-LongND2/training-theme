@@ -1,0 +1,21 @@
+@layer components {
+    .collection__title {
+        @apply px-20 mb-16
+    }
+
+    .collection__title h2 {
+        @apply mb-6
+    }
+
+    .collection__products {
+        @apply px-20
+    }
+
+    .collection__products.full-width {
+        @apply px-0
+    }
+
+    .grid-item img {
+        width: 100%
+    }
+  }
