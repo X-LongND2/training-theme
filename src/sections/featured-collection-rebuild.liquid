@@ -6,6 +6,12 @@
 
 <h1 class="text-2xl text-sky-400">Hello</h1>
 
+<div x-data="{open: true}">
+  <div x-show="open">
+    <p class="bg-gray-400 p-4 my-6 rounded">Goodbye</p>
+  </div>
+</div>
+
 {% schema %}
 {
   "name": "t:sections.featured-collection-rebuild.name",
