@@ -665,9 +665,8 @@ video {
   --tw-translate-x: 0px;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   gap: 0.5rem;
-  transition-property: transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
 
 .product-item{
@@ -675,6 +674,9 @@ video {
   flex-shrink: 0;
   flex-direction: column;
   gap: 0.5rem;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
 .thumbnail-wrapper{

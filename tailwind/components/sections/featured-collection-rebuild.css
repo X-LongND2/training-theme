@@ -40,11 +40,12 @@
     }
 
     .slider-rebuild {
-        @apply flex gap-2 translate-x-0 transition-transform
+        @apply flex gap-2 translate-x-0 overflow-x-auto;
+        scrollbar-width: none
     }
 
     .product-item {
-        @apply shrink-0 flex flex-col gap-2
+        @apply shrink-0 flex flex-col gap-2 transition-transform
     }
 
     .thumbnail-wrapper {

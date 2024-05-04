@@ -29,15 +29,31 @@
       prev() {
         if(this.slider_pos > 1) {
           this.slider_pos--;
-          const slider = document.querySelector('.slider-rebuild');
-          slider.style.transform = `translateX(calc(calc((-100% + {{ section.settings.columns_desktop | minus: 1 | times: 0.5 }}rem)/{{ section.settings.columns_desktop }}*${this.slider_pos-1} - ${this.slider_pos-1}*0.5rem))`
+          const sliderItem = document.querySelectorAll('.product-item');
+          for(let i=0; i < sliderItem.length; i++) {
+            const prevTransform = sliderItem[i].style.transform
+            console.log(prevTransform)
+            const first = prevTransform.lastIndexOf('(')
+            const last = prevTransform.indexOf('%')
+            const transfromValue = Number(prevTransform.slice(first+1, last)) + 100
+            sliderItem[i].style.transform = `translateX(calc(${transfromValue}% +  ${transfromValue/100*0.5}rem))`
+          }
         }
       },
       next() {
         if(this.slider_pos < this.sliders) {
           this.slider_pos++;
-          const slider = document.querySelector('.slider-rebuild');
-          slider.style.transform = `translateX(calc(calc((-100% + {{ section.settings.columns_desktop | minus: 1 | times: 0.5 }}rem)/{{ section.settings.columns_desktop }}*${this.slider_pos-1}) - ${this.slider_pos-1}*0.5rem))`;
+          const sliderItem = document.querySelectorAll('.product-item');
+          for(let i=0; i < sliderItem.length; i++) {
+            const prevTransform = sliderItem[i].style.transform
+            console.log(prevTransform)
+            const first = prevTransform.lastIndexOf('(')
+            const last = prevTransform.indexOf('%')
+            console.log(Number(prevTransform.slice(first+1, last)))
+            const transfromValue = Number(prevTransform.slice(first+1, last)) - 100
+            //console.log(transformValue)
+            sliderItem[i].style.transform = `translateX(calc(${transfromValue}% +  ${transfromValue/100*0.5}rem))`
+          }
         }
       }
     }">
