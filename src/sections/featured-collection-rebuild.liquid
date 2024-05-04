@@ -1,3 +1,9 @@
+{% if section.settings.collection.all_products_count < section.settings.max_products %}
+  {% assign sliders = section.settings.collection.all_products_count | minus: section.settings.columns_desktop | plus: 1 %} 
+{% else %}
+  {% assign sliders = section.settings.max_products | minus: section.settings.columns_desktop | plus: 1 %} 
+{% endif %}
+
 <div class="pt-[{{ section.settings.padding_top }}px] pb-[{{ section.settings.padding_bottom }}px]">
     <div class='collection__title'>
       {% if section.settings.heading_title != blank %}
@@ -11,29 +17,55 @@
         </div>
       {% endif %}
       {% if section.settings.show_description == true and section.settings.collection.description != blank %}
-        <p>
+        <div class="{% if section.settings.description_style == 'subtitle' %}text-3xl{% endif %}{% if section.settings.description_style == 'uppercase' %}uppercase{% endif %}">
           {{ section.settings.collection.description }}
-        </p>
+        </div>
       {% endif %}
     </div>
 
-    <div class="collection__products {% if section.settings.full_width == true %}full-width{% endif %}">
+    <div class="collection__products {% if section.settings.full_width == true %}full-width{% endif %}" x-data="{ 
+      slider_pos: 1,
+      sliders: {{ sliders }},
+      prev() {
+        if(this.slider_pos > 1) {
+          this.slider_pos--;
+          const slider = document.querySelector('.slider-rebuild');
+          slider.style.transform = `translateX(calc(calc((-100% + {{ section.settings.columns_desktop | minus: 1 | times: 0.5 }}rem)/{{ section.settings.columns_desktop }}*${this.slider_pos-1} - ${this.slider_pos-1}*0.5rem))`
+        }
+      },
+      next() {
+        if(this.slider_pos < this.sliders) {
+          this.slider_pos++;
+          const slider = document.querySelector('.slider-rebuild');
+          slider.style.transform = `translateX(calc(calc((-100% + {{ section.settings.columns_desktop | minus: 1 | times: 0.5 }}rem)/{{ section.settings.columns_desktop }}*${this.slider_pos-1}) - ${this.slider_pos-1}*0.5rem))`;
+        }
+      }
+    }">
     {% if section.settings.collection.title %}
-      <div class="grid grid-cols-{{ section.settings.columns_desktop }} " style="display: grid">
-        {% for product in section.settings.collection.products limit: section.settings.max_products %}
-          <div class="grid-item">
-            {{ product.featured_image | image_url: width: 400 | image_tag }}
-            <p>{{ product.title }}</p>
-            <p>{{ product.price }}</p>
-            <p>{{ product.compare_at_price }}</p>
-          </div>      
-        {% endfor %}
-      </div>
+      {% if section.settings.show_carousel %}
+        <div class="slider-rebuild">
+          {% for product in section.settings.collection.products limit: section.settings.max_products %}
+            {% render 'product-item', product: product, col: section.settings.columns_desktop %}
+          {% endfor %}
+        </div>
+        <div class="slider-rebuild__button">
+          <button class="prev" x-on:click="prev()">{% render 'icon-caret' %}</button>
+          <button class="next" x-on:click="next()">{% render 'icon-caret' %}</button>
+        </div>
+      {% else %}
+        <div class="grid grid-cols-{{ section.settings.columns_desktop }}" style="display: grid">
+          {% for product in section.settings.collection.products limit: section.settings.max_products %}
+            {% render 'product-item', product: product, auto: true %}   
+          {% endfor %}
+        </div>
+      {% endif %}
     {% endif %}
     </div>
 
-    <div>
-    <button>View all</button>
+    <div class="collection__link" x-data="{view_all_link: '{{ section.settings.collection.url }}'}">
+    {% if section.settings.collection.url != blank and section.settings.view_all and section.settings.collection.all_products_count > section.settings.max_products %}
+      <a class="{% if section.settings.view_all_style == 'link' %}view-all-link{% endif %}{% if section.settings.view_all_style == 'outline' %}outline{% endif %}{% if section.settings.view_all_style == 'solid' %}solid{% endif %}" x-cloak x-show="view_all_link" :href="view_all_link">View all</a>
+    {% endif %}
     </div>
 </div>
 

@@ -1,6 +1,6 @@
 @layer components {
     .collection__title {
-        @apply px-20 mb-16
+        @apply px-20 mb-14
     }
 
     .collection__title h2 {
@@ -16,6 +16,58 @@
     }
 
     .grid-item img {
-        width: 100%
+        @apply w-full
+    }
+
+    .collection__link {
+        @apply text-center mt-12
+    }
+
+    .collection__link .view-all-link {
+        @apply no-underline border-b border-b-black hover:border-b-2 border-b-black
+    }
+
+    .collection__link .outline {
+        @apply px-12 py-4 outline-none border border-black
+    }
+
+    .collection__link .outline:hover {
+        box-shadow: 0 0 0 0.15rem;
+    }
+
+    .collection__link .solid {
+        @apply px-12 py-4 text-white bg-black hover:px-13 hover:py-5
+    }
+
+    .slider-rebuild {
+        @apply flex gap-2 translate-x-0 transition-transform
+    }
+
+    .product-item {
+        @apply shrink-0 flex flex-col gap-2
+    }
+
+    .thumbnail-wrapper {
+        @apply relative
+    }
+
+    .price-wrapper {
+        @apply flex flex-row align-middle gap-4
+    }
+
+    .price-wrapper .text-2xl {
+        @apply leading-10
+    }
+
+    .slider-rebuild__button {
+        @apply flex flex-row justify-center gap-2 mt-12
+    }
+
+    .prev {
+        @apply w-4 h-4 rotate-90
+    }
+
+    .next {
+        @apply w-4 h-4 -rotate-90
     }
   }
