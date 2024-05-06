@@ -735,7 +735,7 @@ video {
 
 .slider-rebuild__button button:disabled,button[disabled]{
   cursor: not-allowed;
-  opacity: 0.2;
+  opacity: 0.5;
 }
 
 .prev{
@@ -1242,6 +1242,21 @@ video {
 .text-3xl{
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-4xl{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-6xl{
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
+.text-8xl{
+  font-size: 6rem;
+  line-height: 1;
 }
 
 .text-\[0\.39375rem\]{

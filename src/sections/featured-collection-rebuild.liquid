@@ -6,7 +6,23 @@
 
 {%- style -%}
   #shopify-section-{{ section.id }} {
-    background: {%- if section.settings.color_scheme.settings.background_gradient != blank -%}{{ section.settings.color_scheme.settings.background_gradient }}{%- else -%}{{ section.settings.color_scheme.settings.background }}{%- endif -%}
+    background: {%- if section.settings.color_scheme.settings.background_gradient != blank -%}{{ section.settings.color_scheme.settings.background_gradient }}{%- else -%}{{ section.settings.color_scheme.settings.background }}{%- endif -%};
+    color: {{ section.settings.color_scheme.settings.text }} !important;
+  }
+
+  #shopify-section-{{ section.id }} h2 {
+    color: {{ section.settings.color_scheme.settings.text }} !important;
+  }
+
+  #shopify-section-{{ section.id }} .solid {
+    background: {{ section.settings.color_scheme.settings.button }};
+    color: {{ section.settings.color_scheme.settings.button_label }}
+  }
+
+  #shopify-section-{{ section.id }} .outline {
+    background: {{ section.settings.color_scheme.settings.background }};
+    color: {{ section.settings.color_scheme.settings.secondary_button_label }};
+    border-color: {{ section.settings.color_scheme.settings.secondary_button_label }}
   }
 {%- endstyle -%}
 
