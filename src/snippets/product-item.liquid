@@ -1,5 +1,5 @@
 {% if product != blank %}
-<div class="product-item" style="{% if auto == true %}width: auto{% else %}width: calc((100% - {{ col | minus: 1 | times: 0.5 }}rem)/{{ col }}){% endif %}">
+<div class="product-item w-slider-{{ col_mobile }} md:w-slider-{{ col }} {% if auto == true %}!w-auto{% endif %}">
   <a class="thumbnail-wrapper" href="{{ product.url }}">
     {{ product.featured_image | image_url: width: 400 | image_tag }}
     {% if product.compare_at_price != product.final_price %}
@@ -19,7 +19,7 @@
   </div>
 </div> 
 {% else %}    
-<div class="product-item" style="{% if auto == true %}width: auto{% else %}width: calc((100% - {{ col | minus: 1 | times: 0.5 }}rem)/{{ col }}){% endif %}">
+<div class="product-item w-slider-{{ col_mobile }} md:w-slider-{{ col }} {% if auto == true %}!w-auto{% endif %}">
   <div class="thumbnail-wrapper" style="cursor: not-allowed">
     <img src="{{ 'product_placeholder.jpg' | asset_url }}" width="auto" height="auto">
   </div>
