@@ -29,10 +29,16 @@
       prev() {
         if(this.slider_pos > 1) {
           this.slider_pos--;
+          if(this.slider_pos === 1) {
+            document.querySelector('.slider-rebuild__button').querySelector('.prev').disabled = true
+          }
+          else {
+            document.querySelector('.slider-rebuild__button').querySelector('.prev').removeAttribute('disabled')
+            document.querySelector('.slider-rebuild__button').querySelector('.next').removeAttribute('disabled')
+          }
           const sliderItem = document.querySelectorAll('.product-item');
           for(let i=0; i < sliderItem.length; i++) {
             const prevTransform = sliderItem[i].style.transform
-            console.log(prevTransform)
             const first = prevTransform.lastIndexOf('(')
             const last = prevTransform.indexOf('%')
             const transfromValue = Number(prevTransform.slice(first+1, last)) + 100
@@ -43,15 +49,19 @@
       next() {
         if(this.slider_pos < this.sliders) {
           this.slider_pos++;
+          if(this.slider_pos === this.sliders) {
+            document.querySelector('.slider-rebuild__button').querySelector('.next').disabled = true
+          }
+          else {
+            document.querySelector('.slider-rebuild__button').querySelector('.next').removeAttribute('disabled')
+            document.querySelector('.slider-rebuild__button').querySelector('.prev').removeAttribute('disabled')
+          }
           const sliderItem = document.querySelectorAll('.product-item');
           for(let i=0; i < sliderItem.length; i++) {
             const prevTransform = sliderItem[i].style.transform
-            console.log(prevTransform)
             const first = prevTransform.lastIndexOf('(')
             const last = prevTransform.indexOf('%')
-            console.log(Number(prevTransform.slice(first+1, last)))
             const transfromValue = Number(prevTransform.slice(first+1, last)) - 100
-            //console.log(transformValue)
             sliderItem[i].style.transform = `translateX(calc(${transfromValue}% +  ${transfromValue/100*0.5}rem))`
           }
         }
@@ -64,10 +74,13 @@
             {% render 'product-item', product: product, col: section.settings.columns_desktop %}
           {% endfor %}
         </div>
-        <div class="slider-rebuild__button">
-          <button class="prev" x-on:click="prev()">{% render 'icon-caret' %}</button>
-          <button class="next" x-on:click="next()">{% render 'icon-caret' %}</button>
-        </div>
+        {% if section.settings.collection.all_products_count > section.settings.columns_desktop and section.settings.max_products > section.settings.columns_desktop %}
+          <div class="slider-rebuild__button">
+            <button disabled class="prev" x-on:click="prev()">{% render 'icon-caret' %}</button>
+            <p><span x-text="slider_pos"></span>/<span x-text="sliders"></span></p>
+            <button class="next" x-on:click="next()">{% render 'icon-caret' %}</button>
+          </div>
+        {% endif %}
       {% else %}
         <div class="grid grid-cols-{{ section.settings.columns_desktop }}" style="display: grid">
           {% for product in section.settings.collection.products limit: section.settings.max_products %}
@@ -75,6 +88,12 @@
           {% endfor %}
         </div>
       {% endif %}
+    {% else %}
+      <div class="grid grid-cols-{{ section.settings.columns_desktop }}" style="display: grid">
+        {% for i in (1..section.settings.columns_desktop) %}
+          {% render 'product-item', product: blank, auto: true %}   
+        {% endfor %}
+      </div>
     {% endif %}
     </div>
 

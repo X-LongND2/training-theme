@@ -679,6 +679,10 @@ video {
   transition-duration: 150ms;
 }
 
+.product-item a:hover{
+  text-decoration-line: underline;
+}
+
 .thumbnail-wrapper{
   position: relative;
 }
@@ -698,8 +702,14 @@ video {
   margin-top: 3rem;
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: center;
   gap: 0.5rem;
+}
+
+.slider-rebuild__button button:disabled,button[disabled]{
+  cursor: not-allowed;
+  opacity: 0.2;
 }
 
 .prev{
