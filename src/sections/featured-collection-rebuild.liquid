@@ -5,9 +5,10 @@
 {% endif %}
 
 <div class="pt-[{{ section.settings.padding_top }}px] pb-[{{ section.settings.padding_bottom }}px]">
+  {% if section.settings.heading_title != blank or section.settings.show_description == false and section.settings.description != blank or section.settings.show_description == true and section.settings.collection.description != blank %}
     <div class='collection__title'>
       {% if section.settings.heading_title != blank %}
-        <h2 class="{% if section.settings.heading_size == 'h2' %}text-4xl{% endif %}{% if section.settings.heading_size == 'h1' %}text-6xl{% endif %}{% if section.settings.heading_size == 'h0' %}text-8xl{% endif %}">
+        <h2 class="text-{{ section.settings.heading_size }}">
           {{ section.settings.heading_title }}
         </h2>
       {% endif %}
@@ -22,6 +23,7 @@
         </div>
       {% endif %}
     </div>
+  {% endif %}
 
     <div class="collection__products {% if section.settings.full_width == true %}full-width{% endif %}" x-data="{ 
       slider_pos: 1,
@@ -30,13 +32,13 @@
         if(this.slider_pos > 1) {
           this.slider_pos--;
           if(this.slider_pos === 1) {
-            document.querySelector('.slider-rebuild__button').querySelector('.prev').disabled = true
+            $refs.prev_btn.disabled = true
           }
           else {
-            document.querySelector('.slider-rebuild__button').querySelector('.prev').removeAttribute('disabled')
-            document.querySelector('.slider-rebuild__button').querySelector('.next').removeAttribute('disabled')
+            $refs.prev_btn.removeAttribute('disabled')
+            $refs.next_btn.removeAttribute('disabled')
           }
-          const sliderItem = document.querySelectorAll('.product-item');
+          const sliderItem = $el.querySelectorAll('.product-item');
           for(let i=0; i < sliderItem.length; i++) {
             const prevTransform = sliderItem[i].style.transform
             const first = prevTransform.lastIndexOf('(')
@@ -50,13 +52,13 @@
         if(this.slider_pos < this.sliders) {
           this.slider_pos++;
           if(this.slider_pos === this.sliders) {
-            document.querySelector('.slider-rebuild__button').querySelector('.next').disabled = true
+            $refs.next_btn.disabled = true
           }
           else {
-            document.querySelector('.slider-rebuild__button').querySelector('.next').removeAttribute('disabled')
-            document.querySelector('.slider-rebuild__button').querySelector('.prev').removeAttribute('disabled')
+            $refs.next_btn.removeAttribute('disabled')
+            $refs.prev_btn.removeAttribute('disabled')
           }
-          const sliderItem = document.querySelectorAll('.product-item');
+          const sliderItem = $el.querySelectorAll('.product-item');
           for(let i=0; i < sliderItem.length; i++) {
             const prevTransform = sliderItem[i].style.transform
             const first = prevTransform.lastIndexOf('(')
@@ -76,32 +78,32 @@
         </div>
         {% if section.settings.collection.all_products_count > section.settings.columns_desktop and section.settings.max_products > section.settings.columns_desktop %}
           <div class="slider-rebuild__button">
-            <button disabled class="prev" x-on:click="prev()">{% render 'icon-caret' %}</button>
+            <button disabled x-ref="prev_btn" class="prev" x-on:click="prev()">{% render 'icon-caret' %}</button>
             <p><span x-text="slider_pos"></span>/<span x-text="sliders"></span></p>
-            <button class="next" x-on:click="next()">{% render 'icon-caret' %}</button>
+            <button x-ref="next_btn" class="next" x-on:click="next()">{% render 'icon-caret' %}</button>
           </div>
         {% endif %}
       {% else %}
-        <div class="grid grid-cols-{{ section.settings.columns_desktop }}" style="display: grid">
+        <div class="grid-cols-{{ section.settings.columns_mobile }} gap-y-8 gap-x-4 md:grid-cols-{{ section.settings.columns_desktop }} md:gap-x-4 !grid">
           {% for product in section.settings.collection.products limit: section.settings.max_products %}
-            {% render 'product-item', product: product, auto: true %}   
+            {% render 'product-item', product: product, auto: true, col: section.settings.columns_desktop %}   
           {% endfor %}
         </div>
       {% endif %}
     {% else %}
-      <div class="grid grid-cols-{{ section.settings.columns_desktop }}" style="display: grid">
+      <div class="grid-cols-{{ section.settings.columns_mobile }} gap-y-8 gap-x-4 md:grid-cols-{{ section.settings.columns_desktop }} md:gap-x-4 !grid">
         {% for i in (1..section.settings.columns_desktop) %}
-          {% render 'product-item', product: blank, auto: true %}   
+          {% render 'product-item', product: blank, auto: true, col: section.settings.columns_desktop, col_mobile: section.settings.columns_mobile %}   
         {% endfor %}
       </div>
     {% endif %}
     </div>
 
-    <div class="collection__link" x-data="{view_all_link: '{{ section.settings.collection.url }}'}">
-    {% if section.settings.collection.url != blank and section.settings.view_all and section.settings.collection.all_products_count > section.settings.max_products %}
-      <a class="{% if section.settings.view_all_style == 'link' %}view-all-link{% endif %}{% if section.settings.view_all_style == 'outline' %}outline{% endif %}{% if section.settings.view_all_style == 'solid' %}solid{% endif %}" x-cloak x-show="view_all_link" :href="view_all_link">View all</a>
+    {% if section.settings.view_all and section.settings.collection.url != blank and section.settings.collection.all_products_count > section.settings.max_products %}
+      <div class="collection__link">
+        <a class="{% if section.settings.view_all_style == 'link' %}view-all-link{% endif %}{% if section.settings.view_all_style == 'outline' %}outline{% endif %}{% if section.settings.view_all_style == 'solid' %}solid{% endif %}" :href='{{ section.settings.collection.url }}'>View all</a>
+      </div>
     {% endif %}
-    </div>
 </div>
 
 {% schema %}
@@ -124,19 +126,19 @@
       "id": "heading_size",
       "options": [
         {
-          "value": "h2",
+          "value": "4xl",
           "label": "t:sections.featured-collection-rebuild.settings.heading_size.options__1.label"
         },
         {
-          "value": "h1",
+          "value": "6xl",
           "label": "t:sections.featured-collection-rebuild.settings.heading_size.options__2.label"
         },
         {
-          "value": "h0",
+          "value": "8xl",
           "label": "t:sections.featured-collection-rebuild.settings.heading_size.options__3.label"
         }
       ],
-      "default": "h1",
+      "default": "6xl",
       "label": "t:sections.featured-collection-rebuild.settings.heading_size.label"
     },
     {
