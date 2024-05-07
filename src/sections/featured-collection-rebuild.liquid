@@ -4,6 +4,12 @@
   {%- assign sliders = section.settings.max_products | minus: section.settings.columns_desktop | plus: 1 -%} 
 {%- endif -%}
 
+{%- if section.settings.collection.all_products_count < section.settings.max_products -%}
+  {%- assign slidersMobile = section.settings.collection.all_products_count | minus: section.settings.columns_mobile | plus: 1 -%} 
+{%- else -%}
+  {%- assign slidersMobile = section.settings.max_products | minus: section.settings.columns_mobile | plus: 1 -%} 
+{%- endif -%}
+
 {%- style -%}
   #shopify-section-{{ section.id }} {
     background: {%- if section.settings.color_scheme.settings.background_gradient != blank -%}{{ section.settings.color_scheme.settings.background_gradient }}{%- else -%}{{ section.settings.color_scheme.settings.background }}{%- endif -%};
@@ -47,9 +53,9 @@
     </div>
   {%- endif -%}
 
-    <div class="collection__products {%- if section.settings.full_width == true -%}full-width{%- endif -%}" x-data="{ 
+    <div class="collection__products md:z-1 {%- if section.settings.full_width == true -%}full-width{%- endif -%}" x-data="{ 
       slider_pos: 1,
-      sliders: {{ sliders }},
+      sliders: window.getComputedStyle($el).zIndex === '1' ? {{ sliders }} : {{ slidersMobile }},
       prev() {
         if (this.slider_pos > 1) {
           this.slider_pos--;
@@ -121,7 +127,7 @@
 
     {%- if section.settings.view_all and section.settings.collection.url != blank and section.settings.collection.all_products_count > section.settings.max_products -%}
       <div class="collection__link">
-        <a class="{%- if section.settings.view_all_style == 'link' -%}view-all-link{%- endif -%}{%- if section.settings.view_all_style == 'outline' -%}outline{%- endif -%}{%- if section.settings.view_all_style == 'solid' -%}solid{%- endif -%}" :href='{{ section.settings.collection.url }}'>View all</a>
+        <a class="{%- if section.settings.view_all_style == 'link' -%}view-all-link{%- endif -%}{%- if section.settings.view_all_style == 'outline' -%}outline{%- endif -%}{%- if section.settings.view_all_style == 'solid' -%}solid{%- endif -%}" href='{{ section.settings.collection.url }}'>View all</a>
       </div>
     {%- endif -%}
 </div>

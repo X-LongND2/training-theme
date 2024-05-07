@@ -16,6 +16,9 @@ module.exports = {
         'slider-4': 'calc((100% - 1.5rem)/4)',
         'slider-5': 'calc((100% - 2rem)/5)',
         'slider-6': 'calc((100% - 2.5rem)/6)',
+      },
+      zIndex: {
+        '1': 1
       }
     },
   },
